@@ -1,0 +1,58 @@
+
+<style>
+.my-input {
+font-family: var(--font-family);
+    font-feature-settings: var(--font-feature-settings, normal);
+    font-size: 1rem;
+    color: #495057;
+    background: #ffffff;
+    padding: 0.75rem 0.75rem;
+    border: 1px solid #ced4da;
+    transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
+    appearance: none;
+    border-radius: 6px;
+    flex: 1 1 auto;
+    width: 15%;
+  }
+</style>
+{%extends 'layout.html' %}
+{% load static %}
+
+{%block title_block %}
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+{%endblock%}
+{%block body_block %}
+<h2>הרשמה</h2>
+<form action="" method="post">
+  {% csrf_token %}
+  <div class="form-group">
+  <input style="margin-top: -2cm;" class="my-input" type="text" name="fname" placeholder="שם פרטי"/>
+  </div>
+  <br>
+  <div class="form-group">
+  <input style="margin-top: -1cm;" class="my-input" type="text" name ="lname"placeholder="שם משפחה"/>
+  </div>
+    <br>
+
+  <div class="form-group">
+  <input class="my-input" type="date" name ="birth_date"placeholder="תאריך לידה"/>
+  </div>
+    <br>
+
+  <div class="form-group">
+  <input class="my-input" type="text" name ="address"placeholder="כתובת"/>
+  </div>
+    <br>
+
+  <div class="form-group">
+  <input class="my-input" type="text" name ="phone"placeholder="נייד"/>
+  </div>
+    <br>
+
+  <div class="form-group">
+  <input class="my-input" type="text" name ="password"placeholder="סיסמה"/>
+  </div>
+  <button type="submit" class="btn btn-primary">הרשמה</button>
+</form>
+
+{%endblock%}

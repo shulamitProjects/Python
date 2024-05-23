@@ -1,0 +1,10 @@
+{%extends 'layout.html' %}
+
+{%block body_block %}
+{{ block.super }}
+{% if request.user.is_authenticated %}
+<h3>Hello {{request.user.first_name}}</h3>
+{%endif%}
+<br>
+<h4> {{today_date | date:"Y-m-d"}} </h4>
+{%endblock%}

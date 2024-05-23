@@ -1,0 +1,63 @@
+<style>
+.button {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: black;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  font-size: 16px;
+  border: none;
+  margin-top: 10px; /* Adjust the margin-top value to lower the button */
+}
+
+.button:hover {
+  background-color: #333; /* Change the background color on hover if desired */
+}
+
+
+    .left-link {
+        display: block;
+        text-align: left;
+        margin-left: 20px;
+        font-size: 18px;
+        text-decoration: none;
+        color: #333;
+    }
+
+    .left-link:hover {
+        color: #666;
+        text-decoration: underline;
+    }
+</style>
+{% extends 'layout.html' %}
+{% load static %}
+
+{% block body_block %}
+  {% if user %}
+   <a class="button" href="{% url 'lending' %}">My Books</a>
+  {% endif %}
+  <h3 style="text-align: center">הספרים שלנו</h3>
+
+
+  <div style="display: flex; flex-wrap: wrap; justify-content: center;">
+    {% for book in books %}
+      <div style="width: 300px; height: 500px; border: 1px solid black; margin: 20px; text-align: center;">
+        <img src="{% static 'pictures/' %}{{ book.image }}" style="width: 200px; height: 250px; object-fit: cover; margin-bottom: 10px;">
+        <div style="padding: 10px;">
+          <h3 style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">{{ book.book_name }}</h3>
+          <p style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">{{ book.author }}</p>
+          <p style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">{{ book.category.category_name }}</p>
+          {% if user %}
+            {% if book.is_lend %}
+              <p style="color: red;">הספר לא זמין</p>
+            {% else %}
+              <p style="color: green;">הספר זמין</p>
+              <button style="margin-top: 5px;align-item: center%;" type="submit" onclick="location.href='{% url 'lend' book.id %}'">השאלה</button>
+            {% endif %}
+          {% endif %}
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+{% endblock %}

@@ -1,0 +1,11 @@
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+<div  class="toolbar">
+    <a class="nav-link link-light" href="{% url 'login' %}">כניסת משתמש</a>
+    <a class="nav-link link-light" href="{% url 'add_person' %}">הרשמה</a>
+    <a class="nav-link link-light" href="{% url 'logout' %}">יציאה מהמשתמש</a>
+    <a class="nav-link link-light" href="{% url 'allBooks' %}">לספריה</a>
+    <a class="nav-link link-light" href="{% url 'reports' %}">דו"ח חריגה</a>
+</div>

@@ -1,0 +1,42 @@
+{% extends 'layout.html' %}
+{% load static %}
+{% block body_block %}
+<link rel="stylesheet" href="{% static 'css/report.css' %}">
+
+{% if ifUserr %}
+    <h3 style="text-align:center">!דו"ח חריגה</h3>
+{% endif %}
+
+<div>
+  <table class="loan-table">
+    <thead>
+      <tr>
+        <th>תאריך החזרה</th>
+        <th>תאריך השאלה</th>
+        <th>נייד משאיל</th>
+        <th>שם משאיל</th>
+        <th>שם הספר</th>
+        <th>תמונה</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for rep in report %}
+        <tr>
+          <td>{{ rep.date_required_return }}</td>
+          <td>{{ rep.date_barrowed }}</td>
+          <td>{{ rep.user_id.phone }}</td>
+          <td>{{ rep.user_id.first_name }}</td>
+          <td>{{ rep.book_id.book_name }}</td>
+          <td><img src="{% static 'pictures/' %}{{ rep.book_id.image }}" class="poison-img"></td>
+
+        </tr>
+             {% empty %}
+        <tr>
+          <td colspan="5" style="text-align:center">אין דו"ח</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+{% endblock %}
